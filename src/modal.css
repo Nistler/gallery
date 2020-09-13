@@ -1,0 +1,81 @@
+.modal-window {
+  position: absolute;
+  width: 619px;
+  height: 425px;
+  background-color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+  display: flex;
+  width: 559px;
+  height: 365px;
+  margin: 30px;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 331px;
+}
+
+.modal-comments {
+  display: flex;
+  padding: 14px;
+  flex-direction: column;
+}
+
+.modal-date {
+  font-family: "Roboto", sans-serif;
+  color: #999999;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.modal-commet {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  line-height: 15px;
+  padding-top: 5px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.send-comment-button {
+  width: 332px;
+  height: 30px;
+  background: #4997d0;
+  border-radius: 3px;
+  border: 0 solid black;
+  font-family: Roboto;
+  font-size: 13px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.form-input {
+  width: 332px;
+  height: 30px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-family: Roboto;
+  font-size: 13px;
+  line-height: 15px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+.modal-img {
+  width: 331px;
+  height: 220px;
+  margin-bottom: 30px;
+}
