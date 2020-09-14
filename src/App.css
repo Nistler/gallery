@@ -21,6 +21,7 @@
 
 .main-img {
   margin: 15px 10px 15px 10px;
+  cursor: pointer;
 }
 
 @media (max-width: 670px) {

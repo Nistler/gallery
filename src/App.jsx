@@ -26,7 +26,7 @@ export default class Galerry extends React.Component {
     });
   };
 
-  openModal = (id) => (e) => {
+  toggleModal = (id) => (e) => {
     e.preventDefault();
     const { isModalActive } = this.state;
     this.setState({ isModalActive: !isModalActive, imageModalId: id });
@@ -38,14 +38,16 @@ export default class Galerry extends React.Component {
       <div className="main-container">
         <h1 className="main-header">Gallery</h1>
         <div className="gallery-container">
-          {isModalActive && <Modal id={imageModalId} />}
+          {isModalActive && (
+            <Modal id={imageModalId} toggleModal={this.toggleModal} />
+          )}
           {gallery.map((image) => (
             <img
               className="main-img"
               key={image.id}
               src={image.url}
               alt=""
-              onClick={this.openModal(image.id)}
+              onClick={this.toggleModal(image.id)}
             />
           ))}
         </div>
