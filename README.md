@@ -1,26 +1,30 @@
-## Задание
-​
+# Simple gallery with modal window
 
-Необходимо сверстать адаптивную страницу со списком фотографий.
-​
+---
 
-При клике на фотографии открывается модальное окно с фотографией, списком комментариев и формой добавления комментариев.
-​
+Test task from Avito.ru
+Full description: https://github.com/avito-tech/safedeal-frontend-trainee
 
-Список ручек:
-* GET `https://boiling-refuge-66454.herokuapp.com/images` - получение списка фотографий.
-* GET `https://boiling-refuge-66454.herokuapp.com/images/:imageId` - получения большого изображения и списка комментариев.
-* POST `https://boiling-refuge-66454.herokuapp.com/images/:imageId/comments` - добавление комментария (204 – OK, комментарий не сохраняется).
+Short description:
 
-​
-Дизайн можно найти [тут](https://www.figma.com/file/3VP0QDK3kjdfbkj8TRrtsx/Test-task?node-id=0%3A1).
-​
+- responsive page with a list of photos
+- on click opens a modal window with photo, comments, and form for adding a new comment
+- use React.js
+- do not use external components (like a modal window)
 
-Ответы на вопросы по заданию можно найти [тут](mailto:varkadov@avito.ru).
-​
+## 🔴 Live demo:
 
-Мы оценим если:
-- приложение будет работать локально после `npm i && npm run start`;
-- приложение написано на React;
-- не используются внешние компоненты, например, модальное окно;
-- учтен UX.
+#### https://nistler.github.io/gallery/
+
+![alt text](https://github.com/Nistler/gallery/blob/master/demo.gif?raw=true "Gallery demo")
+
+## 🚀 Installation
+
+```
+$ git clone https://github.com/Nistler/gallery
+$ cd gallery
+$ npm install
+$ npm start
+```
+
+The application will open in the browser on http://localhost:3000
