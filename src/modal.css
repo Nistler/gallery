@@ -16,7 +16,7 @@
 
 @keyframes show {
   from {
-    display: "none";
+    display: none;
     opacity: 0;
   }
   to {
