@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import "./modal.css";
 
+// Convert date from UNIX timestamp
 const normalizeDate = (date) => {
   const transformedDate = new Date(date);
   const day = transformedDate.getDate();
@@ -11,17 +12,46 @@ const normalizeDate = (date) => {
   }.${year}`;
 };
 
-export default class Modal extends React.Component {
+export default class Modal extends Component {
   constructor(props) {
     super(props);
     const { id } = this.props;
-    this.state = { id, imageUrl: null, comments: [], name: "", comment: "" };
+    this.state = {
+      id,
+      imageUrl: null,
+      comments: [],
+      name: "",
+      comment: "",
+      isLoading: true,
+    };
   }
 
   componentDidMount() {
+    window.addEventListener("keyup", this.handleKeyUp, false);
+    document.body.style.overflow = "hidden";
     this.getImageDetails();
   }
 
+  componentWillUnmount() {
+    document.body.style.overflow = "initial";
+    window.removeEventListener("keyup", this.handleKeyUp, false);
+  }
+
+  // Closing the modal window by pressing the ESC key
+  handleKeyUp = (e) => {
+    const { toggleModal } = this.props;
+    const keys = {
+      27: () => {
+        toggleModal(null)(e);
+        window.removeEventListener("keyup", this.handleKeyUp, false);
+      },
+    };
+    if (keys[e.keyCode]) {
+      keys[e.keyCode]();
+    }
+  };
+
+  // Loading comments and URL of Hi-Res version of the image
   getImageDetails = async () => {
     const { id } = this.state;
     const response = await fetch(
@@ -31,9 +61,11 @@ export default class Modal extends React.Component {
     this.setState({
       imageUrl: transformed.url,
       comments: transformed.comments,
+      isLoading: false,
     });
   };
 
+  // Control of input field
   handleChange = ({ target }) => {
     const { name, value } = target;
     if (name === "name") {
@@ -43,9 +75,10 @@ export default class Modal extends React.Component {
     this.setState({ comment: value });
   };
 
+  // Posting comment request
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, comment, id } = this.state;
+    const { name, comment, id, comments } = this.state;
     try {
       const response = await fetch(
         `https://boiling-refuge-66454.herokuapp.com/images/${id}/comments`,
@@ -64,17 +97,33 @@ export default class Modal extends React.Component {
     } catch (error) {
       console.log("Fetch request error:", error.message);
     }
-    this.setState({ name: "", comment: "" });
+    // Imitate of adding a new comment
+    const newComments = [
+      ...comments,
+      { id: 99, text: comment, date: new Date() },
+    ];
+
+    this.setState({
+      name: "",
+      comment: "",
+      comments: newComments,
+    });
   };
 
   render() {
     const { toggleModal } = this.props;
-    const { imageUrl, comments, name, comment } = this.state;
+    const { imageUrl, comments, name, comment, isLoading } = this.state;
     return (
       <div className="modal-window">
         <div className="modal-container">
           <div className="modal-content">
-            {imageUrl && <img className="modal-img" src={imageUrl} alt="" />}
+            <div className="img-container">
+              {isLoading ? (
+                <div className="donut" />
+              ) : (
+                <img className="modal-img" src={imageUrl} alt="" />
+              )}
+            </div>
           </div>
           <div className="modal-comments">
             {comments.length < 1 ? (

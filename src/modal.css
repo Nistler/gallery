@@ -9,6 +9,20 @@
   -webkit-box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  animation-duration: 0.5s;
+  animation-name: show;
+}
+
+@keyframes show {
+  from {
+    display: "none";
+    opacity: 0;
+  }
+  to {
+    display: flex;
+    opacity: 1;
+  }
 }
 
 .modal-container {
@@ -25,9 +39,13 @@
 
 .modal-comments {
   display: flex;
+  position: absolute;
+  right: 30px;
   width: 213px;
+  height: 380px;
   padding: 5px 0px 0px 15px;
   flex-direction: column;
+  overflow: auto;
 }
 
 .modal-date {
@@ -45,7 +63,7 @@
 }
 
 .comment {
-  padding: 0px;
+  padding: 0px 0px 10px 0px;
 }
 
 .comment-placeholder {
@@ -67,6 +85,7 @@
   font-size: 13px;
   line-height: 15px;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .form-input {
@@ -83,9 +102,21 @@
 
 .modal-img {
   width: 331px;
+  opacity: 1;
+  animation-duration: 0.5s;
+  animation-name: show;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 331px;
+  min-height: 220px;
   margin-bottom: 30px;
 }
 
+/* >>> close icon */
 .close {
   position: absolute;
   right: 20px;
@@ -117,6 +148,7 @@
 .close:after {
   transform: rotate(-45deg);
 }
+/* <<< close icon */
 
 @media (max-width: 670px) {
   .modal-window {
@@ -142,13 +174,15 @@
     width: 100%;
   }
 
-  .modal-comments {
-    padding: 0px;
+  .img-container {
     width: 100%;
   }
 
-  .comment {
-    padding: 0px 20px;
+  .modal-comments {
+    padding: 0px;
+    width: 332px;
+    height: 300px;
+    position: initial;
   }
 
   .comment-form {
@@ -175,5 +209,10 @@
 @media (max-width: 370px) {
   .comment-form {
     width: 90%;
+  }
+
+  .modal-comments {
+    width: 90%;
+    height: 100px;
   }
 }
