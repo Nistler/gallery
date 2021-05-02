@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./galerry.css";
+import "./gallery.css";
 import Modal from "./Modal.jsx";
 
-export default class Galerry extends Component {
+export default class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,12 +51,12 @@ export default class Galerry extends Component {
       : "gallery-container";
 
     return (
-      <div className="main-container">
+      <section className="main-container">
         <h1 className="main-header">Gallery</h1>
         {isLoading ? (
           <div className="donut" />
         ) : (
-          <div className={galleryStyle}>
+          <article className={galleryStyle}>
             {gallery.map((image) => (
               <img
                 className="main-img"
@@ -66,12 +66,12 @@ export default class Galerry extends Component {
                 onClick={this.toggleModal(image.id)}
               />
             ))}
-          </div>
+          </article>
         )}
         {isModalActive && (
           <Modal id={imageModalId} toggleModal={this.toggleModal} />
         )}
-      </div>
+      </section>
     );
   }
 }

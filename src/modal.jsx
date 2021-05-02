@@ -114,9 +114,9 @@ export default class Modal extends Component {
     const { toggleModal } = this.props;
     const { imageUrl, comments, name, comment, isLoading } = this.state;
     return (
-      <div className="modal-window">
+      <article className="modal-window">
         <div className="modal-container">
-          <div className="modal-content">
+          <section className="modal-content">
             <div className="img-container">
               {isLoading ? (
                 <div className="donut" />
@@ -124,21 +124,21 @@ export default class Modal extends Component {
                 <img className="modal-img" src={imageUrl} alt="" />
               )}
             </div>
-          </div>
-          <div className="modal-comments">
+          </section>
+          <section className="modal-comments">
             {comments.length < 1 ? (
               <div className="comment comment-placeholder">
                 Комментариев нет
               </div>
             ) : (
               comments.map(({ id, text, date }) => (
-                <div className="comment" id={id} key={id}>
-                  <div className="modal-date">{normalizeDate(date)}</div>
+                <article className="comment" id={id} key={id}>
+                  <time className="modal-date">{normalizeDate(date)}</time>
                   <div className="modal-comment">{text}</div>
-                </div>
+                </article>
               ))
             )}
-          </div>
+          </section>
           <form className="comment-form" onSubmit={this.handleSubmit}>
             <input
               className="form-input"
@@ -165,8 +165,8 @@ export default class Modal extends Component {
             />
           </form>
         </div>
-        <div className="close" onClick={toggleModal(null)}></div>
-      </div>
+        <div className="close" onClick={toggleModal(null)} />
+      </article>
     );
   }
 }
